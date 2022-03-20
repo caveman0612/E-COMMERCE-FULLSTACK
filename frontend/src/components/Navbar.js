@@ -2,20 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import Badge from "@mui/material/Badge";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   height: 60px;
   margin-bottom: 1rem;
-
-  @media only screen and (max-width: 380px) {
-    display: none;
-  }
+  ${mobile({ height: "50px" })}
 `;
 const Wrapper = styled.div`
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  ${mobile({ padding: "10px 0" })}
 `;
 
 const Left = styled.div`
@@ -28,6 +27,7 @@ const Language = styled.span`
   font-size: 1.5rem;
   font-weight: bold;
   cursor: pointer;
+  ${mobile({ display: "none" })}
 `;
 
 const SearchContainer = styled.div`
