@@ -2,17 +2,19 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
+const userRoute = require("./routes/user");
+const authRoute = require("./routes/auth");
 
-// console.log("1", process.env);
-console.log("1", process.env.mongoPassword);
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("DB connection success"))
+  .catch((err) => console.log(err));
 
-// mongoose
-//   .connect(
-//     `mongodb+srv://admin:${process.argv.mongoPassword}@cluster0.xha96.mongodb.net/shop?retryWrites=true&w=majority`
-//   )
-//   .then(() => console.log("DB connection success"))
-//   .catch((err) => console.log(err));
+app.use(express.json());
 
-app.listen(5000, () => {
+app.use("/api/auth", authRoute);
+app.use("/api/users", userRoute);
+
+app.listen(process.env.PORT || 5000, () => {
   console.log("Backend server is running");
 });
